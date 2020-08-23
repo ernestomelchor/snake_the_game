@@ -5,6 +5,10 @@ date: August 2020
 title: 'Snake: The Game'
 ---
 
+![image](Snake.jpg)
+
+[\[fig:snake\]]{#fig:snake label="fig:snake"}
+
 Background
 ==========
 
@@ -66,14 +70,14 @@ Snake: The Rules
 The rules of the game go as follows:
 
 1.  The head of the snake can move in four directions at any given time:
-    up, down, left, or right. The snake’s head, however, cannot move
+    up, down, left, or right. The snake's head, however, cannot move
     back to the block in the previous time step $t-1$ unless the snake
     is only one tile long.
 
 2.  If no new input is given then the snake continues to move in that
     direction until a new direction is provided.
 
-3.  If the snake’s head encounters a food tile then it eats the food and
+3.  If the snake's head encounters a food tile then it eats the food and
     the score goes up by $100$ points.
 
 4.  When the food is eaten the snake grows longer for $\Delta t$ time
@@ -82,7 +86,36 @@ The rules of the game go as follows:
 5.  When food is eaten it is removed from the board and a new location
     for the food is randomly chosen from the empty tiles.
 
-6.  If the snake’s head collides with the boundary or any other part of
+6.  If the snake's head collides with the boundary or any other part of
     the snake (body or tail) then the game ends and the score is
     recorded.
-# snake_the_game
+
+Important Quantities
+====================
+
+In the game there are a few quantities you may want to keep track of in
+order to win. You must check for 3 tiles in all 8 principal directions
+(North, North East, East, South East, South, South West, West, and North
+East) starting from the head tile and ending at the tile in question.
+Store these values in a 24-item dictionary and make sure they're easily
+accessible by your program:
+
+1.  Distance from the head tile to the closest food tile in all 8
+    directions.
+
+2.  Distance from the head tile to the closest border in all 8
+    directions.
+
+3.  Distance from the head tile to the closest body tile in all 8
+    directions.
+
+In case you need a refresher on how to compute the distance between two
+things this is the equation: $$\begin{aligned}
+    D &= \sqrt{(X_2 - X_1)^2 + (Y_2 - Y_1)^2}\end{aligned}$$
+
+If you are interested we can use these quantities to teach our snake how
+to make its own decisions and how to play the game. I must warn you
+though that this task is a bit more complicated than what we have done
+so far, but I guarantee you that it's worth it. By allowing our snake to
+make its own decisions on how to play the game it meets the criteria of
+what computer scientist like to call Artificial Intelligence.
